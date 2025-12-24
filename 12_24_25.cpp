@@ -38,7 +38,7 @@ pass2->mealPref=VEG;
 pass2->isfreqflyer=true;
 pass2->flyernumber= 456;
 std::cout<<*pass2<<std::endl;
-
+delete pass2;
 
     return 0;
 }
