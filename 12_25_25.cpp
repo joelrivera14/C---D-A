@@ -43,6 +43,7 @@ int main(){
         std::cout<<be[i]<<" ";
     }*/
 
+    //operator overloading
     Person p1{"joel",24};
     Person p2{"jol",24};
     std::cout<<(p1 == p2)<<std::endl;
