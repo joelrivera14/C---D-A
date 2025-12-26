@@ -1,4 +1,6 @@
 #include <iostream>
+#include "counter.h"
+
 
 struct Person{
     std::string name;
@@ -47,6 +49,12 @@ int main(){
     Person p1{"joel",24};
     Person p2{"jol",24};
     std::cout<<(p1 == p2)<<std::endl;
+
+    Counter c1;
+    std::cout<<c1.getCount()<<std::endl;
+    c1.increaseBy(90);
+    std::cout<<c1.getCount()<<std::endl;
+
 
     return 0;
 }
