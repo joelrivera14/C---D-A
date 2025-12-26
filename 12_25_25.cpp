@@ -1,5 +1,14 @@
 #include <iostream>
 
+struct Person{
+    std::string name;
+    int age;
+};
+bool operator==(const Person& a, const Person& b){
+    return a.name == b.name
+            && a.age == b.age;
+}
+
 int main(){
 
     /*Static casting is used when a conversion is made between two related types, for
@@ -14,7 +23,7 @@ int main(){
     int b = t;
     std::cout<<(b)<<std::endl;
 
-    //switch statements
+    /*switch statements
     int x;
     std::cout<<"Enter a number: ";
     std::cin>>x;
@@ -25,14 +34,18 @@ int main(){
         default:
         std::cout<<"meh"<<std::endl;
         break;
-    }
+    }*/
 
-    //for loops
+    /*for loops
     const int num = 100;
     double be[num]={};
     for(int i = 0; i<num;++i){
         std::cout<<be[i]<<" ";
-    }
+    }*/
+
+    Person p1{"joel",24};
+    Person p2{"jol",24};
+    std::cout<<(p1 == p2)<<std::endl;
 
     return 0;
 }
