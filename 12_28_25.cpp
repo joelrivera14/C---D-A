@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <string>
 
 /*STL: Standard Template Library
 a collection of useful classes for common data structures
@@ -35,6 +36,17 @@ int main()
         std::cout << (i + 1) << " ";
     }
     std::cout << "\n";
+
+    int index = intContainer.at(99);
+    std::cout << index << "\n";
+
+    std::string s1 = "helleo";
+    std::cout << s1.find('e') << "\n";
+    // find can also be used with character and index to search on or after
+    std::cout << s1.find('e', 2) << "\n";
+    std::cout << s1.insert(2, "e") << "\n";
+    std::cout << s1.erase(1, 1) << "\n";
+    std::cout << s1.erase(4, 1) << "\n";
 
     return 0;
 }
