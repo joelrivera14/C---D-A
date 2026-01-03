@@ -2,6 +2,7 @@
 #define PERSON_H
 #include <string>
 
+// a protected member in the base class allows access to derived classes but not to the outside
 class Person
 {
 private:
@@ -10,7 +11,8 @@ private:
 
 public:
     Person(const std::string &n, const std::string &i);
-    void print();
+    virtual ~Person() = default;
+    virtual void print();
     std::string getName() const;
 };
 

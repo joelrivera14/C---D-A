@@ -12,7 +12,7 @@ private:
 
 public:
     Student(const std::string &n, const std::string &i, const std::string &m, int gY);
-    void print();
+    void print() override;
     void changeMajor(const std::string &m);
 };
 
