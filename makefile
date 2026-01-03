@@ -1,17 +1,14 @@
-prog : creditCardTest.o counter.o passanger.o creditCard.o
-	g++ -std=c++11 -o prog creditCardTest.o counter.o passanger.o creditCard.o
+prog : 1_3_26.o person.o student.o 
+	g++ -std=c++11 -o prog 1_3_26.o person.o student.o 
 
-creditCardTest.o : counter.h passanger.h creditCard.h
-	g++ -std=c++11 -c creditCardTest.cpp
+1_3_26.o : person.h student.h 
+	g++ -std=c++11 -c 1_3_26.cpp
 
-counter.o : counter.h
-	g++ -std=c++11 -c counter.cpp
+person.o : person.h
+	g++ -std=c++11 -c person.cpp
 
-passanger.o : passanger.h
-	g++ -std=c++11 -c passanger.cpp
-
-creditCard.o : creditCard.h
-	g++ -std=c++11 -c creditCard.cpp
+student.o : student.h
+	g++ -std=c++11 -c student.cpp
 
 
 clean:

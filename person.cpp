@@ -6,8 +6,8 @@ Person::Person(const std::string &n, const std::string &i) : name(n), id(i)
 }
 void Person::print()
 {
-    std::cout << name << std::endl;
-    std::cout << id << std::endl;
+    std::cout << name << " ";
+    std::cout << id << " ";
 }
 std::string Person::getName() const
 {
