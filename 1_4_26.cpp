@@ -3,6 +3,9 @@
 #include "arithProg.h"
 #include "geomProg.h"
 #include "FibonacciProg.h"
+#include "person.h"
+#include "student.h"
+#include <string>
 
 int main()
 {
@@ -34,5 +37,11 @@ int main()
     prog = new FibonacciProg(4, 6);
     prog->printProgression(10);
     delete prog;
+    Person *pp[100];
+    pp[0] = new Person("joel", "12-23");
+    pp[1] = new Student("lom", "34-42", "CSIS", 2026);
+    // dynamic casting allows us to use child memeber functions
+    Student *sp = dynamic_cast<Student *>(pp[1]);
+    sp->changeMajor("Comp Sci");
     return 0; // successful execution
 }

@@ -12,7 +12,7 @@ protected:
     long first;
     long cur;
     virtual long firstValue();
-    virtual long nextValue();
+    virtual long nextValue() = 0;
 };
 
 #endif
