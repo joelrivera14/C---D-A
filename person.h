@@ -11,6 +11,7 @@ private:
 
 public:
     Person(const std::string &n, const std::string &i);
+    // virtual destructor allows dervied classes to invoke destructor if needed
     virtual ~Person() = default;
     virtual void print();
     std::string getName() const;
