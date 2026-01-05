@@ -1,8 +1,8 @@
-prog : 1_4_26.o person.o student.o progression.o arithProg.o FibonacciProg.o geomProg.o
-	g++ -std=c++11 -o prog 1_4_26.o person.o student.o progression.o arithProg.o FibonacciProg.o geomProg.o
+prog : temptest.o person.o student.o 
+	g++ -std=c++11 -o prog temptest.o person.o student.o
 
-1_4_26.o : person.h student.h progression.h arithProg.h FibonacciProg.h geomProg.h
-	g++ -std=c++11 -c 1_4_26.cpp
+temptest.o : person.h student.h progression.h arithProg.h FibonacciProg.h geomProg.h
+	g++ -std=c++11 -c temptest.cpp
 
 person.o : person.h
 	g++ -std=c++11 -c person.cpp

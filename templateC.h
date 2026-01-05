@@ -8,7 +8,7 @@ public:
     BasicVector(int c = 10) : a(new T[c]), capacity(c) {};
     T &operator[](int i)
     {
-        a[i];
+        return a[i];
     }
 
 private:
