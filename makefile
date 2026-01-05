@@ -1,14 +1,14 @@
-prog : temptest.o person.o student.o 
-	g++ -std=c++11 -o prog temptest.o person.o student.o
+prog : 1_5_26.o gameEntry.o Scores.o 
+	g++ -std=c++11 -o prog 1_5_26.o gameEntry.o Scores.o
 
-temptest.o : person.h student.h progression.h arithProg.h FibonacciProg.h geomProg.h
-	g++ -std=c++11 -c temptest.cpp
+1_5_26.o : gameEntry.h Scores.h progression.h 
+	g++ -std=c++11 -c 1_5_26.cpp
 
-person.o : person.h
-	g++ -std=c++11 -c person.cpp
+gameEntry.o : gameEntry.h
+	g++ -std=c++11 -c gameEntry.cpp
 
-student.o : student.h
-	g++ -std=c++11 -c student.cpp
+Scores.o : Scores.h
+	g++ -std=c++11 -c Scores.cpp
 
 progression.o : progression.h
 	g++ -std=c++11 -c progression.cpp

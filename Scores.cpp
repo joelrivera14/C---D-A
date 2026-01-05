@@ -38,3 +38,12 @@ GameEntry Scores::remove(int i)
     numEntries--;
     return e;
 }
+std::ostream &operator<<(std::ostream &out, const Scores &s)
+{
+    for (int i = 0; i < s.numEntries; ++i)
+    {
+        out << s.entries[i].getName() << " "
+            << s.entries[i].getScore() << "\n";
+    }
+    return out;
+}
