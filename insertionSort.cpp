@@ -4,8 +4,6 @@ void insertionSort(int *r, int n);
 
 int main()
 {
-    // a maxtrix or a 2d-array
-    int m[8][10]; // 8 rows and 10 columns
 
     int n = 9;
     int *c = new int[n]{1, 2, 4, 3, 5, 2, 8, 2323, 1};
