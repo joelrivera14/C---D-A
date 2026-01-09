@@ -1,12 +1,12 @@
-prog : n.o stringLinkedList.o 
-	g++ -std=c++11 -o prog n.o stringLinkedList.o
+prog : n.o genericSL.o 
+	g++ -std=c++11 -o prog n.o genericSL.o
 
-n.o : stringNode.h stringLinkedList.h 
+n.o : genericSN.h genericSL.h 
 	g++ -std=c++11 -c n.cpp
 
 
-stringLinkedList.o : stringLinkedList.h
-	g++ -std=c++11 -c stringLinkedList.cpp
+genericSL.o : genericSL.h
+	g++ -std=c++11 -c genericSL.cpp
 
 
 clean:
