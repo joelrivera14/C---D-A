@@ -1,12 +1,8 @@
-prog : n.o genericSL.o 
-	g++ -std=c++11 -o prog n.o genericSL.o
+prog : stack.o 
+	g++ -std=c++11 -o prog stack.o
 
-n.o : genericSN.h genericSL.h 
-	g++ -std=c++11 -c n.cpp
-
-
-genericSL.o : genericSL.h
-	g++ -std=c++11 -c genericSL.cpp
+stack.o : arraystack.h 
+	g++ -std=c++11 -c stack.cpp
 
 
 clean:
