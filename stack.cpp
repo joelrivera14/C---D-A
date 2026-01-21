@@ -15,6 +15,7 @@ int main()
     std::cout << s.top() << "\n";
     std::cout << s.empty() << "\n";
     std::cout << s.size() << "\n";
+    std::cout << "\n";
 
     ArrayStack<int> d;
     d.push(3);
@@ -22,6 +23,7 @@ int main()
     std::cout << d.top() << "\n";
     std::cout << d.empty() << "\n";
     std::cout << d.size() << "\n";
+    std::cout << "\n";
 
     ArrayStack<std::string> a;
     a.push("hello");
@@ -29,6 +31,7 @@ int main()
     std::cout << a.top() << "\n";
     std::cout << a.empty() << "\n";
     std::cout << a.size() << "\n";
+    std::cout << "\n";
 
     return 0;
 }
