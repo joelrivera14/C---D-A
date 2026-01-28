@@ -61,6 +61,16 @@ public:
     NodeList(const NodeList &nL) {};            // copy constructor
     NodeList &operator=(const NodeList &nL) {}; // assignment operator
     ~NodeList() {};                             // destructor
+    int size() const;
+    bool empty() const;
+    Iterator begin() const;
+    Iterator end() const;
+    void insertFront(const El &e);
+    void insertBack(const El &e);
+    void insert(const Iterator &p, const Elem &e);
+    void eraseFront();
+    void eraseBack();
+    void erase(const Iterator &p);
 
 private:
     int n;
