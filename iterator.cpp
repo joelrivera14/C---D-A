@@ -12,5 +12,6 @@ int main()
     i.push_back(5);
     i.push_back(6);
     i.push_back(4);
+    std::cout << i.front() << "\n";
     return 0;
 }
