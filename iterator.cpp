@@ -4,28 +4,68 @@
 /* An Iterator supports the ability to access a nodes element and also
     provides the ability to traverse through the container
 */
-template <typename El>
-struct Node
-{
-    El e;
-    Node *prev;
-    Node *next;
-};
 
 template <typename El>
-class Iterator
+class NodeList
 {
+private:
+    struct Node
+    {
+        El e;
+        Node<El> *prev;
+        Node<El> *next;
+    };
+
 public:
-    El &operator*() {};
-    bool operator==(const Iterator &b) const {};
-    bool operator!=(const Iterator &b) const {};
-    Iterator &operator++() {};
-    Iterator &operator--() {};
-    friend class NodeList;
+    class Iterator
+    {
+    public:
+        El &operator*()
+        {
+            return v->e;
+        };
+        bool operator==(const Iterator &b) const
+        {
+            return v == b.v;
+        };
+        bool operator!=(const Iterator &b) const
+        {
+            return v != b.v;
+        };
+        Iterator &operator++()
+        {
+            v = v->next;
+            return *this;
+        };
+        Iterator &operator--()
+        {
+            v = v->prev;
+            return *this;
+        };
+        friend class NodeList;
+
+    private:
+        Node<El> *v;
+        Iterator(Node<El> *u)
+        {
+            v = u;
+        };
+    };
+
+public:
+    NodeList() : n(0), header(new Node), trailer(new Node)
+    {
+        header->next = trailer;
+        trailer->prev = header;
+    };
+    NodeList(const NodeList &nL) {};            // copy constructor
+    NodeList &operator=(const NodeList &nL) {}; // assignment operator
+    ~NodeList() {};                             // destructor
 
 private:
-    Node *v;
-    Iterator(Node *u);
+    int n;
+    Node<El> *header;
+    Node<El> *trailer; // sentinal node
 };
 
 int main()
