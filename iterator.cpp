@@ -77,13 +77,23 @@ public:
     {
         return Iterator(trailer);
     };
-    void insertFront(const El &element)
-    {
-        Node *n = new Node;
-        n->e = element;
+    void insertFront(const El &element) {
     };
-    void insertBack(const El &e);
-    void insert(const Iterator &p, const Elem &element);
+    void insertBack(const El &e) {
+
+    };
+    void insert(const Iterator &p, const Elem &element)
+    {
+        Node *w = p.v;
+        Node *u = w->prev;
+        Node *v = new Node;
+        v->e = element;
+        v->prev = u;
+        v->next = w;
+        u->next = v;
+        w->prev = v;
+        ++n;
+    };
     void eraseFront();
     void eraseBack();
     void erase(const Iterator &p);
