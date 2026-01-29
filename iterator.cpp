@@ -69,9 +69,21 @@ public:
         trailer = new Node;
         header->next = trailer;
         trailer->prev = header;
+        for (Node *curr = nL.header->next; curr != nL.trailer; curr = curr->next)
+        {
+            insertBack(curr->e);
+        }
     };
     NodeList &operator=(const NodeList &nL) {}; // assignment operator
-    ~NodeList() {};                             // destructor
+    ~NodeList()
+    {
+        while (!empty())
+        {
+            eraseBack();
+        }
+        delete header;
+        delete trailer;
+    };
     int size() const
     {
         return n;
@@ -114,16 +126,16 @@ public:
     };
     void eraseBack()
     {
-        erase(end());
+        erase(Iterator(trailer->prev));
     };
     void erase(const Iterator &p)
     {
-        Node *n = p->v;
-        Node *m = n->prev;
-        Node *o = n->next;
+        Node *r = p->v;
+        Node *m = r->prev;
+        Node *o = r->next;
         m->next = o;
         o->prev = m;
-        delete n;
+        delete r;
         --n;
     };
 
@@ -142,6 +154,5 @@ int main()
     i.push_back(4);
     std::cout << i.front() << "\n";
 
-    NodeList L;
     return 0;
 }
