@@ -74,7 +74,22 @@ public:
             insertBack(curr->e);
         }
     };
-    NodeList &operator=(const NodeList &nL) {}; // assignment operator
+    NodeList &operator=(const NodeList &nL)
+    {
+        if (*this == nL)
+        {
+            return this;
+        }
+        header = new Node;
+        trailer = new Node;
+        header->next = trailer;
+        trailer->prev = header;
+        for (Node *curr = nL.header->next; curr != nL.trailer; curr = curr->next)
+        {
+            insertBack(curr->e);
+        }
+        return *this;
+    };
     ~NodeList()
     {
         while (!empty())
