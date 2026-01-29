@@ -4,7 +4,6 @@
 /* An Iterator supports the ability to access a nodes element and also
     provides the ability to traverse through the container
 */
-
 template <typename El>
 class NodeList
 {
@@ -12,8 +11,8 @@ private:
     struct Node
     {
         El e;
-        Node<El> *prev;
-        Node<El> *next;
+        Node *prev;
+        Node *next;
     };
 
 public:
@@ -45,8 +44,8 @@ public:
         friend class NodeList;
 
     private:
-        Node<El> *v;
-        Iterator(Node<El> *u)
+        Node *v;
+        Iterator(Node *u)
         {
             v = u;
         };
@@ -58,7 +57,19 @@ public:
         header->next = trailer;
         trailer->prev = header;
     };
-    NodeList(const NodeList &nL) {};            // copy constructor
+    NodeList(const NodeList &nL)
+    {
+        /*
+        copy constructor plan
+        Create empty list with sentinels
+        Walk through nL
+        Insert each element at the back
+         */
+        header = new Node;
+        trailer = new Node;
+        header->next = trailer;
+        trailer->prev = header;
+    };
     NodeList &operator=(const NodeList &nL) {}; // assignment operator
     ~NodeList() {};                             // destructor
     int size() const
@@ -77,12 +88,15 @@ public:
     {
         return Iterator(trailer);
     };
-    void insertFront(const El &element) {
+    void insertFront(const El &element)
+    {
+        insert(begin(), element);
     };
-    void insertBack(const El &e) {
-
+    void insertBack(const El &element)
+    {
+        insert(end(), element);
     };
-    void insert(const Iterator &p, const Elem &element)
+    void insert(const Iterator &p, const El &element)
     {
         Node *w = p.v;
         Node *u = w->prev;
@@ -94,14 +108,29 @@ public:
         w->prev = v;
         ++n;
     };
-    void eraseFront();
-    void eraseBack();
-    void erase(const Iterator &p);
+    void eraseFront()
+    {
+        erase(begin());
+    };
+    void eraseBack()
+    {
+        erase(end());
+    };
+    void erase(const Iterator &p)
+    {
+        Node *n = p->v;
+        Node *m = n->prev;
+        Node *o = n->next;
+        m->next = o;
+        o->prev = m;
+        delete n;
+        --n;
+    };
 
 private:
     int n;
-    Node<El> *header;
-    Node<El> *trailer; // sentinal node
+    Node *header;
+    Node *trailer; // sentinal node
 };
 
 int main()
@@ -112,5 +141,7 @@ int main()
     i.push_back(6);
     i.push_back(4);
     std::cout << i.front() << "\n";
+
+    NodeList L;
     return 0;
 }
