@@ -153,6 +153,14 @@ public:
         delete r;
         --n;
     };
+    void print()
+    {
+        for (Node *n = header->next; n != trailer; n = n->next)
+        {
+            std::cout << n->e << " ";
+        }
+        std::cout << "\n";
+    };
 
 private:
     int n;
@@ -169,5 +177,11 @@ int main()
     i.push_back(4);
     std::cout << i.front() << "\n";
 
+    NodeList<int> L;
+    L.insertBack(4);
+    L.insertBack(5);
+    L.insertBack(4);
+    L.insertBack(3);
+    L.print();
     return 0;
 }
