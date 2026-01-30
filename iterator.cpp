@@ -3,6 +3,11 @@
 
 /* An Iterator supports the ability to access a nodes element and also
     provides the ability to traverse through the container
+
+    ALL STL containers return iterators that point to the respecitive elements when
+    begin() or end()
+    Begin() returns an iterator that points to the first element in the container
+    end() returns an iterator that points just beyond the last element in the container
 */
 template <typename El>
 class NodeList
@@ -168,6 +173,15 @@ private:
     Node *trailer; // sentinal node
 };
 
+int sum(std::list<int> l)
+{
+    int total = 0;
+    for (std::list<int>::iterator p = l.begin(); p != l.end(); ++p)
+    {
+        total += *p;
+    }
+    return total;
+}
 int main()
 {
     std::list<int> i;
@@ -176,6 +190,7 @@ int main()
     i.push_back(6);
     i.push_back(4);
     std::cout << i.front() << "\n";
+    std::cout << sum(i) << "\n";
 
     NodeList<int> L;
     L.insertBack(4);
@@ -183,5 +198,6 @@ int main()
     L.insertBack(4);
     L.insertBack(3);
     L.print();
+
     return 0;
 }
