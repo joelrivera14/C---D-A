@@ -76,14 +76,14 @@ public:
     };
     NodeList &operator=(const NodeList &nL)
     {
-        if (*this == nL)
+        if (this == &nL)
         {
-            return this;
+            return *this;
         }
-        header = new Node;
-        trailer = new Node;
-        header->next = trailer;
-        trailer->prev = header;
+        while (n > 0)
+        {
+            eraseBack();
+        }
         for (Node *curr = nL.header->next; curr != nL.trailer; curr = curr->next)
         {
             insertBack(curr->e);
@@ -145,7 +145,7 @@ public:
     };
     void erase(const Iterator &p)
     {
-        Node *r = p->v;
+        Node *r = p.v;
         Node *m = r->prev;
         Node *o = r->next;
         m->next = o;
