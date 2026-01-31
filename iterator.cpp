@@ -173,6 +173,14 @@ private:
     Node *trailer; // sentinal node
 };
 
+template <typename El>
+class NodeSequence : public NodeList<El>
+{
+public:
+    Iterator atIndex(int i) {};
+    int indexOf(const Iterator &p) {}
+    const;
+};
 int sum(std::list<int> l)
 {
     int total = 0;
