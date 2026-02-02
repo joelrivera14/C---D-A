@@ -177,9 +177,24 @@ template <typename El>
 class NodeSequence : public NodeList<El>
 {
 public:
-    Iterator atIndex(int i) {};
-    int indexOf(const Iterator &p) {}
-    const;
+    Iterator atIndex(int i) const
+    {
+        Iterator p = begin();
+        for (int n = 0; n < i; ++n)
+        {
+            ++p;
+        }
+        return p;
+    };
+    int indexOf(const Iterator &p) const
+    {
+        int n = 0;
+        for (Iterator l = begin(); l != p; ++l)
+        {
+            ++n;
+        }
+        return n;
+    };
 };
 int sum(std::list<int> l)
 {
