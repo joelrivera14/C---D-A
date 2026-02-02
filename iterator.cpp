@@ -205,6 +205,28 @@ int sum(std::list<int> l)
     }
     return total;
 }
+void insertionSort(NodeSequence<int> &n)
+{
+    for (NodeList<int>::Iterator i = ++n.begin(); i != n.end(); ++i)
+    {
+        NodeList<int>::Iterator curr = i;
+
+        while (curr != n.begin())
+        {
+            NodeList<int>::Iterator prev = curr;
+            --prev;
+            if (*prev > *curr)
+            {
+                std::swap(*prev, *curr);
+                curr = prev;
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+};
 int main()
 {
     std::list<int> i;
@@ -227,6 +249,8 @@ int main()
     q.insertFront(2);
     q.insertBack(5);
     q.insertFront(6);
+    q.print();
+    insertionSort(q);
     q.print();
 
     return 0;
