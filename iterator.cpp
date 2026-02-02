@@ -177,19 +177,19 @@ template <typename El>
 class NodeSequence : public NodeList<El>
 {
 public:
-    Iterator atIndex(int i) const
+    typename NodeList<El>::Iterator atIndex(int i) const
     {
-        Iterator p = begin();
+        typename NodeList<El>::Iterator p = this->begin();
         for (int n = 0; n < i; ++n)
         {
             ++p;
         }
         return p;
     };
-    int indexOf(const Iterator &p) const
+    int indexOf(const typename NodeList<El>::Iterator &p) const
     {
         int n = 0;
-        for (Iterator l = begin(); l != p; ++l)
+        for (typename NodeList<El>::Iterator l = this->begin(); l != p; ++l)
         {
             ++n;
         }
@@ -221,6 +221,13 @@ int main()
     L.insertBack(4);
     L.insertBack(3);
     L.print();
+
+    NodeSequence<int> q;
+    q.insertBack(3);
+    q.insertFront(2);
+    q.insertBack(5);
+    q.insertFront(6);
+    q.print();
 
     return 0;
 }
