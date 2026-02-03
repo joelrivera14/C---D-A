@@ -8,6 +8,8 @@
     begin() or end()
     Begin() returns an iterator that points to the first element in the container
     end() returns an iterator that points just beyond the last element in the container
+
+    BubbleSort runs in o(n^2) time
 */
 template <typename El>
 class NodeList
@@ -227,6 +229,26 @@ void insertionSort(NodeSequence<int> &n)
         }
     }
 };
+void bubbleSort(NodeSequence<int> &n)
+{
+    int l = n.size();
+    for (int i = 0; i < l; ++i)
+    {
+        NodeList<int>::Iterator prev = n.begin();
+        for (int j = 1; j < l - i; ++j)
+        {
+            NodeList<int>::Iterator succ = prev;
+            ++succ;
+            if (*prev > *succ)
+            {
+                int temp = *prev;
+                *prev = *succ;
+                *succ = temp;
+            }
+            ++prev;
+        }
+    }
+};
 int main()
 {
     std::list<int> i;
@@ -250,7 +272,7 @@ int main()
     q.insertBack(5);
     q.insertFront(6);
     q.print();
-    insertionSort(q);
+    bubbleSort(q);
     q.print();
 
     return 0;
