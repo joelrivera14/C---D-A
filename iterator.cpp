@@ -273,6 +273,7 @@ int main()
     q.insertFront(6);
     q.insertFront(6);
     q.insertFront(6);
+    q.insertFront(6);
     q.print();
     bubbleSort(q);
     q.print();
