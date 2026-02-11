@@ -3,6 +3,8 @@ using namespace std;
 
 int main()
 {
+    /*ex1:
+
     int day;
     string dayoff = "";
     cout << "select dayoff" << "\n";
@@ -35,5 +37,30 @@ int main()
     }
 
     cout<<"your day off is "<<dayoff<<"\n";
+    */
+    // ex2
+    char g = ' ';
+
+    cout << "pick a gender" << "\n";
+    cout << "m for male" << "\n";
+    cout << "f for female" << "\n";
+    cout << "o for other" << "\n";
+    cin >> g;
+
+    switch (g)
+    {
+    case 'm':
+    case 'M':
+        cout << "male" << "\n";
+        break;
+    case 'f':
+    case 'F':
+        cout << "female" << "\n";
+        break;
+    case 'o':
+    case 'O':
+        cout << "other" << "\n";
+        break;
+    }
     return 0;
 }
