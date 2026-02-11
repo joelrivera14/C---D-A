@@ -4,6 +4,7 @@ using namespace std;
 int main()
 {
     int day;
+    string dayoff = "";
     cout << "select dayoff" << "\n";
     cout << "1 monday" << "\n";
     cout << "2 tuesday" << "\n";
@@ -15,22 +16,24 @@ int main()
     switch (day)
     {
     case 1:
-        cout << "you work monday" << "\n";
+        dayoff = "monday";
         break;
     case 2:
-        cout << "you work tuesday" << "\n";
+        dayoff = "tuesday";
         break;
     case 3:
-        cout << "you work wednesday" << "\n";
+        dayoff = "wednesday";
         break;
     case 4:
-        cout << "you work thursday" << "\n";
+        dayoff = "thursday";
         break;
     case 5:
-        cout << "you work friday" << "\n";
+        dayoff = "friday";
         break;
     default:
         break;
     }
+
+    cout<<"your day off is "<<dayoff<<"\n";
     return 0;
 }
