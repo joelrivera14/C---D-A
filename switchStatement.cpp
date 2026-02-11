@@ -38,7 +38,7 @@ int main()
 
     cout<<"your day off is "<<dayoff<<"\n";
     */
-    // ex2
+    /*ex2
     char g = ' ';
 
     cout << "pick a gender" << "\n";
@@ -61,6 +61,39 @@ int main()
     case 'O':
         cout << "other" << "\n";
         break;
+    }*/
+    // lab exercise
+    int first = 0, second = 0;
+    char op = ' ';
+    cout << "input a two numbers and select an operation" << "\n";
+    cout << "+ for addition" << "\n";
+    cout << "- for subtraction" << "\n";
+    cout << "* for multiplication" << "\n";
+    cout << "/ for division " << "\n";
+    cout << "% for remainder " << "\n";
+    cin >> first >> second >> op;
+
+    switch (op)
+    {
+    case '+':
+        cout << (first + second) << "\n";
+        break;
+    case '-':
+        cout << (first - second) << "\n";
+        break;
+    case '*':
+        cout << (first * second) << "\n";
+        break;
+    case '/':
+        cout << (first / second) << "\n";
+        break;
+    case '%':
+        cout << (first % second) << "\n";
+        break;
+
+    default:
+        break;
     }
+
     return 0;
 }
