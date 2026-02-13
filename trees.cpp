@@ -19,6 +19,10 @@ class Position
 {
 public:
     E &operator*();
+    Position parent() const {};
+    PositionList children() const {};
+    bool isRoot() const {};
+    bool isExternal() const {};
 };
 
 int main()
