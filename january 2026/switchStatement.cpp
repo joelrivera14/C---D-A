@@ -61,6 +61,8 @@ int main()
     case 'O':
         cout << "other" << "\n";
         break;
+    default:
+        break;
     }*/
     // lab exercise
     int first = 0, second = 0;
