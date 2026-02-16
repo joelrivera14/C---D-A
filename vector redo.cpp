@@ -88,6 +88,14 @@ public:
     {
         return v[index];
     }
+    int &front()
+    {
+        return v[0];
+    }
+    int &back()
+    {
+        return v[size - 1];
+    }
 
 private:
     int size;
