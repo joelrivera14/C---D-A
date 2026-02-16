@@ -44,6 +44,19 @@ public:
     {
         return size == 0;
     }
+    void reserve(int c)
+    {
+        if (c <= capacity)
+            return;
+        int *b = new int[c];
+        for (int i = 0; i < size; ++i)
+        {
+            b[i] = v[i];
+        }
+        delete[] v;
+        capacity = c;
+        v = b;
+    }
 
 private:
     int size;
