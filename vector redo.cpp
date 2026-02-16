@@ -57,6 +57,17 @@ public:
         capacity = c;
         v = b;
     }
+    void resize(int s)
+    {
+        if (s > size)
+        {
+            for (int i = size; i < s; ++i)
+            {
+                v[i] = 0;
+            }
+        }
+        size = s;
+    }
 
 private:
     int size;
