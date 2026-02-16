@@ -3,8 +3,8 @@
 class Vect
 {
 public:
-    Vect() : size(0), v(nullptr) {};
-    Vect(int s) : size(s)
+    Vect() : size(0), capacity(0), v(nullptr) {};
+    Vect(int s) : size(s), capacity(s)
     {
         v = new int[s];
     }
@@ -15,7 +15,8 @@ public:
     Vect(const Vect &b)
     {
         size = b.size;
-        v = new int[size];
+        capacity = b.capacity;
+        v = new int[capacity];
         for (int i = 0; i < size; ++i)
             v[i] = b.v[i];
     }
@@ -25,17 +26,27 @@ public:
         {
             return *this;
         }
-        size = b.size;
         delete[] v;
-        v = new int[size];
+        size = b.size;
+        capacity = b.capacity;
+        v = new int[capacity];
         for (int i = 0; i < size; ++i)
         {
             v[i] = b.v[i];
         }
         return *this;
     }
+    int vSize() const
+    {
+        return size;
+    }
+    bool empty() const
+    {
+        return size == 0;
+    }
 
 private:
     int size;
+    int capacity;
     int *v;
 };
