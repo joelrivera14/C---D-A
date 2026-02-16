@@ -59,6 +59,10 @@ public:
     }
     void resize(int s)
     {
+        if (s > capacity)
+        {
+            reserve(s);
+        }
         if (s > size)
         {
             for (int i = size; i < s; ++i)
