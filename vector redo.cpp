@@ -72,6 +72,14 @@ public:
         }
         size = s;
     }
+    int &operator[](int index)
+    {
+        return v[index];
+    }
+    const int &operator[](int index) const
+    {
+        return v[index];
+    }
 
 private:
     int size;
