@@ -36,7 +36,7 @@ public:
         }
         return *this;
     }
-    int vSize() const
+    int getSize() const
     {
         return size;
     }
@@ -77,6 +77,14 @@ public:
         return v[index];
     }
     const int &operator[](int index) const
+    {
+        return v[index];
+    }
+    int &at(int index)
+    {
+        return v[index];
+    }
+    const int &at(int index) const
     {
         return v[index];
     }
