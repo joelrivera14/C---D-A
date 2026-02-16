@@ -122,11 +122,12 @@ public:
         {
             reserve((capacity == 0) ? 1 : capacity * 2);
         }
-        for (int i = size - 1; i > index; --i)
+        for (int i = size; i > index; --i)
         {
-            v[i + 1] = v[i];
+            v[i] = v[i - 1];
         }
         v[index] = value;
+        ++size;
     }
     void erase(int index) {}
 
@@ -135,3 +136,10 @@ private:
     int capacity;
     int *v;
 };
+
+int main()
+{
+    Vect v1(4);
+    v1.push_back(2);
+    return 0;
+}
