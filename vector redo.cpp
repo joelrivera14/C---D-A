@@ -96,6 +96,39 @@ public:
     {
         return v[size - 1];
     }
+    void push_back(int i)
+    {
+        if (size >= capacity)
+        {
+            reserve((capacity == 0) ? 1 : capacity * 2);
+        }
+        v[size] = i;
+        ++size;
+    }
+    void pop_back()
+    {
+        if (size > 0)
+        {
+            --size;
+        }
+    }
+    void clear()
+    {
+        size = 0;
+    }
+    void insert(int index, int value)
+    {
+        if (size >= capacity)
+        {
+            reserve((capacity == 0) ? 1 : capacity * 2);
+        }
+        for (int i = size - 1; i > index; --i)
+        {
+            v[i + 1] = v[i];
+        }
+        v[index] = value;
+    }
+    void erase(int index) {}
 
 private:
     int size;
