@@ -129,17 +129,17 @@ public:
         v[index] = value;
         ++size;
     }
-    void erase(int index) {}
+    void erase(int index)
+    {
+        for (int i = index; i < size - 1; ++i)
+        {
+            v[i] = v[i + 1];
+        }
+        --size;
+    }
 
 private:
     int size;
     int capacity;
     int *v;
 };
-
-int main()
-{
-    Vect v1(4);
-    v1.push_back(2);
-    return 0;
-}
