@@ -9,4 +9,10 @@ struct Node
 
 class Queue
 {
+public:
+    Queue() : front(nullptr), back(nullptr) {};
+
+private:
+    Node *front;
+    Node *back;
 };
