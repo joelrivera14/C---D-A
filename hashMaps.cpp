@@ -22,10 +22,24 @@ protected:                                // protected types
     typedef std::list<Entry> Bucket;      // a bucket of entries
     typedef std::vector<Bucket> BktArray; // a bucket array
     // . . .insert HashMap utilities here
+    Iterator finder(const K &k);                          // find utility
+    Iterator inserter(const Iterator &p, const Entry &e); // insert utility
+    void eraser(const Iterator &p);                       // remove utility
+    typedef typename BktArray::iterator BItor;            // bucket iterator
+    typedef typename Bucket::iterator EItor;              // entry iterator
+    static void nextEntry(Iterator &p)                    // bucket’s next entry
+    {
+        ++p.ent;
+    }
+    static bool endOfBkt(const Iterator &p) // end of bucket?
+    {
+        return p.ent == p.bkt->end();
+    }
+
 private:
     int n;      // number of entries
     H hash;     // the hash comparator
     BktArray B; // bucket array
 public:         // public types
-        // . . .insert Iterator class declaration here
+                // . . .insert Iterator class declaration here
 };
