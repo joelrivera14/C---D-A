@@ -1,4 +1,5 @@
 #include <iostream>
+#include "maps.cpp"
 
 // keys are immutable so const K for an entry, value can change
 template <typename K, typename V, typename H>
@@ -26,5 +27,5 @@ private:
     H hash;     // the hash comparator
     BktArray B; // bucket array
 public:         // public types
-    // . . .insert Iterator class declaration here
+        // . . .insert Iterator class declaration here
 };
