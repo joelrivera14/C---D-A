@@ -1,4 +1,6 @@
 #include <iostream>
+#include <vector>
+#include <list>
 #include "maps.cpp"
 
 // keys are immutable so const K for an entry, value can change
