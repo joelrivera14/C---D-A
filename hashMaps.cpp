@@ -7,19 +7,31 @@
 template <typename K, typename V, typename H>
 class HashMap
 {
-public:                                   // public types
-    typedef Entry<const K, V> Entry;      // a (key,value) pair
-    class Iterator;                       // a iterator/position
-public:                                   // public functions
-    HashMap(int capacity = 100);          // constructor
-    int size() const;                     // number of entries
-    bool empty() const;                   // is the map empty?
-    Iterator find(const K &k);            // find entry with key k
-    Iterator put(const K &k, const V &v); // insert/replace (k,v)
-    void erase(const K &k);               // remove entry with key k
-    void erase(const Iterator &p);        // erase entry at p
-    Iterator begin();                     // iterator to first entry
-    Iterator end()                        // iterator to end entry
+public:                                                // public types
+    typedef Entry<const K, V> Entry;                   // a (key,value) pair
+    class Iterator;                                    // a iterator/position
+public:                                                // public functions
+    HashMap(int capacity = 100) : n(0), B(capacity) {} // constructor
+    int size() const { return n; }                     // number of entries
+    bool empty() const { return size() == 0; }         // is the map empty?
+    Iterator find(const K &k);                         // find entry with key k
+    Iterator put(const K &k, const V &v);              // insert/replace (k,v)
+    void erase(const K &k);                            // remove entry with key k
+    void erase(const Iterator &p);                     // erase entry at p
+    Iterator begin()                                   // iterator to first entry
+    {
+        if (empty())
+        {
+            return end();
+        }
+        BItor bkt = B.begin(); // else search for an entry
+        while (bkt->empty())
+        {
+            ++bkt; // find nonempty bucket
+        }
+        return Iterator(B, bkt, bkt->begin());
+    }
+    Iterator end() // iterator to end entry
     {
         return Iterator(B, B.end());
     }
@@ -28,7 +40,15 @@ protected:                                // protected types
     typedef std::list<Entry> Bucket;      // a bucket of entries
     typedef std::vector<Bucket> BktArray; // a bucket array
     // . . .insert HashMap utilities here
-    Iterator finder(const K &k);                          // find utility
+    Iterator finder(const K &k)
+    {
+        int i = hash(k) % B.size();             // get hash index i
+        BItor bkt = B.begin() + i;              // the ith bucket
+        Iterator p(B, bkt, bkt->begin());       // start of ith bucket
+        while (!endOfBkt(p) && (*p).key() != k) // search for k
+            nextEntry(p);
+        return p;
+    } // find utility
     Iterator inserter(const Iterator &p, const Entry &e); // insert utility
     void eraser(const Iterator &p);                       // remove utility
     typedef typename BktArray::iterator BItor;            // bucket iterator
