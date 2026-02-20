@@ -19,7 +19,11 @@ public:                                   // public functions
     void erase(const K &k);               // remove entry with key k
     void erase(const Iterator &p);        // erase entry at p
     Iterator begin();                     // iterator to first entry
-    Iterator end();                       // iterator to end entry
+    Iterator end()                        // iterator to end entry
+    {
+        return Iterator(B, B.end());
+    }
+
 protected:                                // protected types
     typedef std::list<Entry> Bucket;      // a bucket of entries
     typedef std::vector<Bucket> BktArray; // a bucket array
@@ -53,9 +57,34 @@ public:         // public types
     public:
         Iterator(const BktArray &a, const BItor &b, const EItor &q = EItor())
             : ent(q), bkt(b), ba(&a) {}
-        Entry &operator*() const;                 // get entry
-        bool operator==(const Iterator &p) const; // are iterators equal?
-        Iterator &operator++();                   // advance to next entry
-        friend class HashMap;                     // give HashMap access
+        Entry &operator*() const { return *ent; } // get entry
+        bool Iterator::operator==(const Iterator &p) const
+        {
+            if (ba != p.ba || bkt != p.bkt)
+                return false; // ba or bkt differ?
+            else if (bkt == ba->end())
+                return true; // both at the end?
+            else
+                return (ent == p.ent); // else use entry to decide
+        }
+        Iterator &operator++() // advance to next entry
+        {
+            ++ent;
+            if (endOfBkt(*this))
+            {
+                ++bkt;
+                while (bkt != ba->end() && bkt->empty())
+                {
+                    ++bkt;
+                }
+                if (bkt == ba->end())
+                {
+                    return *this;
+                }
+                ent = bkt->begin();
+            }
+            return *this;
+        }
+        friend class HashMap; // give HashMap access
     };
 };
