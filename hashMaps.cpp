@@ -42,4 +42,18 @@ private:
     BktArray B; // bucket array
 public:         // public types
                 // . . .insert Iterator class declaration here
+    class Iterator
+    { // an iterator (& position)
+    private:
+        EItor ent;          // which entry
+        BItor bkt;          // which bucket
+        const BktArray *ba; // which bucket array
+    public:
+        Iterator(const BktArray &a, const BItor &b, const EItor &q = EItor())
+            : ent(q), bkt(b), ba(&a) {}
+        Entry &operator*() const;                 // get entry
+        bool operator==(const Iterator &p) const; // are iterators equal?
+        Iterator &operator++();                   // advance to next entry
+        friend class HashMap;                     // give HashMap access
+    };
 };
