@@ -14,11 +14,18 @@ public:                                                // public functions
     HashMap(int capacity = 100) : n(0), B(capacity) {} // constructor
     int size() const { return n; }                     // number of entries
     bool empty() const { return size() == 0; }         // is the map empty?
-    Iterator find(const K &k);                         // find entry with key k
-    Iterator put(const K &k, const V &v);              // insert/replace (k,v)
-    void erase(const K &k);                            // remove entry with key k
-    void erase(const Iterator &p);                     // erase entry at p
-    Iterator begin()                                   // iterator to first entry
+    Iterator find(const K &k)
+    {
+        Iterator p = finder(k); // look for k
+        if (endOfBkt(p))        // didn’t find it?
+            return end();       // return end iterator
+        else
+            return p;
+    }                                     // find entry with key k
+    Iterator put(const K &k, const V &v); // insert/replace (k,v)
+    void erase(const K &k);               // remove entry with key k
+    void erase(const Iterator &p);        // erase entry at p
+    Iterator begin()                      // iterator to first entry
     {
         if (empty())
         {
