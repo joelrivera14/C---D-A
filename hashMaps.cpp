@@ -21,11 +21,29 @@ public:                                                // public functions
             return end();       // return end iterator
         else
             return p;
-    }                                     // find entry with key k
-    Iterator put(const K &k, const V &v); // insert/replace (k,v)
-    void erase(const K &k);               // remove entry with key k
-    void erase(const Iterator &p);        // erase entry at p
-    Iterator begin()                      // iterator to first entry
+    } // find entry with key k
+    Iterator put(const K &k, const V &v)
+    {
+        Iterator p = finder(k); // search for k
+        if (endOfBkt(p))
+        {                                    // k not found?
+            return inserter(p, Entry(k, v)); // insert at end of bucket
+        }
+        else
+        {                       // found it?
+            p.ent->setValue(v); // replace value with v
+            return p;           // return this position
+        }
+    } // insert/replace (k,v)
+    void erase(const K &k) { eraser(p); } // remove entry with key k
+    void erase(const Iterator &p)
+    {
+        Iterator p = finder(k);                               // find k
+        if (endOfBkt(p))                                      // not found?
+            throw NonexistentElement("Erase of nonexistent"); // . . .error
+        eraser(p);
+    }                // erase entry at p
+    Iterator begin() // iterator to first entry
     {
         if (empty())
         {
@@ -56,11 +74,20 @@ protected:                                // protected types
             nextEntry(p);
         return p;
     } // find utility
-    Iterator inserter(const Iterator &p, const Entry &e); // insert utility
-    void eraser(const Iterator &p);                       // remove utility
-    typedef typename BktArray::iterator BItor;            // bucket iterator
-    typedef typename Bucket::iterator EItor;              // entry iterator
-    static void nextEntry(Iterator &p)                    // bucket’s next entry
+    Iterator inserter(const Iterator &p, const Entry &e)
+    {
+        EItor ins = p.bkt->insert(p.ent, e); // insert before p
+        n++;                                 // one more entry
+        return Iterator(B, p.bkt, ins);
+    } // insert utility
+    void eraser(const Iterator &p)
+    {
+        p.bkt->erase(p.ent); // remove entry from bucket
+        n
+    } // remove utility
+    typedef typename BktArray::iterator BItor; // bucket iterator
+    typedef typename Bucket::iterator EItor;   // entry iterator
+    static void nextEntry(Iterator &p)         // bucket’s next entry
     {
         ++p.ent;
     }
