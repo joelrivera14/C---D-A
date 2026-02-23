@@ -42,7 +42,7 @@ public:                                                // public functions
         if (endOfBkt(p))                                      // not found?
             throw NonexistentElement("Erase of nonexistent"); // . . .error
         eraser(p);
-    }                // erase entry at p
+    } // erase entry at p
     Iterator begin() // iterator to first entry
     {
         if (empty())
