@@ -16,6 +16,8 @@ public:                                                // public functions
     bool empty() const { return size() == 0; }         // is the map empty?
     Iterator find(const K &k)
     {
+        /*It converts this to an index into the bucket array by taking the hash value modulo
+        the array size.*/
         Iterator p = finder(k); // look for k
         if (endOfBkt(p))        // didn’t find it?
             return end();       // return end iterator
