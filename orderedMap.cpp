@@ -21,8 +21,13 @@
     However, does perform find function much faster in search table
     */
 /* binary search:
+    runs in o(log n)
     advantage of using an ordered vector L to implement a map with
     n entries is that accessing an element of L by its index takes o(1)
+    mid = (low+high)/2: results in 3 cases
+    if key == e.key(): return e bc we have found the entry we are looking for
+    if key < e.key(): recur on the first half, high to the midpoint minus 1
+    if key > e.key(): recur on the second half, low midpoint plus 1
     */
 
 int main()
