@@ -7,6 +7,8 @@ struct DoublyLinkedListNode
     DoublyLinkedListNode(int v) : val(v), prev(nullptr), next(nullptr) {}
 };
 
+void addNode(DoublyLinkedListNode *node, DoublyLinkedListNode *nodeToAdd);
+void deleteNode(DoublyLinkedListNode *node);
 int main()
 {
     DoublyLinkedListNode *one = new DoublyLinkedListNode(1);
@@ -21,7 +23,17 @@ int main()
     // each new keyword asks the heap for some free space
     // that  free space can be anywhere, not contigous
     std::cout << one << " " << two << " " << three << " " << std::endl;
+    DoublyLinkedListNode *six = new DoublyLinkedListNode(6);
+    addNode(two, six);
     DoublyLinkedListNode *iter = one;
+    while (iter != nullptr)
+    {
+        std::cout << iter->val << std::endl;
+        iter = iter->next;
+    }
+    std::cout<<"\n";
+    deleteNode(six);
+    iter = one;
     while (iter != nullptr)
     {
         std::cout << iter->val << std::endl;
@@ -30,3 +42,19 @@ int main()
 
     return 0;
 }
+void addNode(DoublyLinkedListNode *node, DoublyLinkedListNode *nodeToAdd)
+{
+    DoublyLinkedListNode *prevN = node->prev;
+    prevN->next = nodeToAdd;
+    nodeToAdd->prev = prevN;
+    nodeToAdd->next = node;
+    node->prev = nodeToAdd;
+}
+void deleteNode(DoublyLinkedListNode *node)
+{
+    DoublyLinkedListNode *nodeBefore = node->prev;
+    DoublyLinkedListNode *nodeAfter = node->next;
+    nodeBefore->next = nodeAfter;
+    nodeAfter->prev = nodeBefore;
+    delete node;
+};
