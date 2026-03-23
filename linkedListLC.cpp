@@ -10,6 +10,7 @@ struct LinkedListNode
 };
 
 int addSum(LinkedListNode *head);
+void deleteNode(LinkedListNode *prevNode);
 int main()
 {
 
@@ -23,16 +24,28 @@ int main()
     std::cout << head->val << std::endl;
     std::cout << head->next->val << std::endl;
     std::cout << two->next->val << std::endl;
-    //adding the sum function
-    std::cout<<addSum(head)<<std::endl;
+    // adding the sum function
+    std::cout << addSum(head) << std::endl;
+
+    // deleting a Node after the input node
+    deleteNode(one);
+    std::cout << addSum(head) << std::endl;
 
     return 0;
 }
-int addSum(LinkedListNode *head) {
+int addSum(LinkedListNode *head)
+{
     int sum = 0;
-    while(head != nullptr){
+    while (head != nullptr)
+    {
         sum += head->val;
         head = head->next;
     }
     return sum;
+}
+void deleteNode(LinkedListNode *prevNode)
+{
+    LinkedListNode *toDelete = prevNode->next;
+    prevNode->next = toDelete->next;
+    delete toDelete;
 }
