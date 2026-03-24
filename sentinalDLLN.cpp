@@ -9,7 +9,9 @@ struct SDLLN
 };
 
 void addToEnd(SDLLN *nodeToAdd, SDLLN *trailer);
-void removeFromEnd();
+void addToBeginning(SDLLN *nodeToAdd, SDLLN *header);
+void removeFromEnd(SDLLN *header, SDLLN *trailer);
+void removeFromBegin(SDLLN *header, SDLLN *trailer);
 
 int main()
 {
@@ -45,6 +47,13 @@ void addToEnd(SDLLN *nodeToAdd, SDLLN *trailer)
     nodeToAdd->prev = trailer->prev;
     trailer->prev = nodeToAdd;
 }
+void addToBeginning(SDLLN *nodeToAdd, SDLLN *header)
+{
+    header->next->prev = nodeToAdd;
+    nodeToAdd->next = header->next;
+    header->next = nodeToAdd;
+    nodeToAdd->prev = header;
+}
 void removeFromEnd(SDLLN *header, SDLLN *trailer)
 {
     if (header->next == trailer)
@@ -55,4 +64,15 @@ void removeFromEnd(SDLLN *header, SDLLN *trailer)
     trailer->prev = lastNode->prev;
     lastNode->prev->next = trailer;
     delete lastNode;
+}
+void removeFromBegin(SDLLN *header, SDLLN *trailer)
+{
+    if (header->next == trailer)
+    {
+        return;
+    }
+    SDLLN *firstNode = header->next;
+    header->next = firstNode->next;
+    firstNode->next->prev = header;
+    delete firstNode;
 }
