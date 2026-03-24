@@ -9,6 +9,7 @@ struct SDLLN
 };
 
 void addToEnd(SDLLN *nodeToAdd, SDLLN *trailer);
+void removeFromEnd();
 
 int main()
 {
@@ -43,4 +44,15 @@ void addToEnd(SDLLN *nodeToAdd, SDLLN *trailer)
     trailer->prev->next = nodeToAdd;
     nodeToAdd->prev = trailer->prev;
     trailer->prev = nodeToAdd;
+}
+void removeFromEnd(SDLLN *header, SDLLN *trailer)
+{
+    if (header->next == trailer)
+    {
+        return;
+    }
+    SDLLN *lastNode = trailer->prev;
+    trailer->prev = lastNode->prev;
+    lastNode->prev->next = trailer;
+    delete lastNode;
 }
