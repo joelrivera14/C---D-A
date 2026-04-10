@@ -57,5 +57,12 @@ void postorderDfs(TreeNode *node)
 
 int main()
 {
+    TreeNode *root = new TreeNode(0);
+    TreeNode *lSide = new TreeNode(1);
+    TreeNode *rSide = new TreeNode(2);
+    root->left = lSide;
+    root->right = rSide;
+
+    preorderDfs(root);
     return 0;
 }
