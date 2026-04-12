@@ -25,7 +25,7 @@ void preorderDfs(TreeNode *node)
     {
         return;
     }
-    std::cout << node->val << "\n";
+    std::cout << node->val << " ";
     preorderDfs(node->left);
     preorderDfs(node->right);
     return;
@@ -38,7 +38,7 @@ void inorderDfs(TreeNode *node)
         return;
     }
     inorderDfs(node->left);
-    std::cout << node->val << "\n";
+    std::cout << node->val << " ";
     inorderDfs(node->right);
     return;
 }
@@ -51,7 +51,7 @@ void postorderDfs(TreeNode *node)
     }
     postorderDfs(node->left);
     postorderDfs(node->right);
-    std::cout << node->val << "\n";
+    std::cout << node->val << " ";
     return;
 }
 
@@ -64,5 +64,7 @@ int main()
     root->right = rSide;
 
     preorderDfs(root);
+    inorderDfs(root);
+    postorderDfs(root);
     return 0;
 }
