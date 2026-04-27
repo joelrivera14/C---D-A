@@ -11,15 +11,15 @@ struct TreeNode
 /* DFS: uses a stack under the hood
    BFS: uses a queue
 */
-void printAllNodes(TreeNode* root);
+void printAllNodes(TreeNode *root);
 int main()
 {
-    TreeNode* rootNode = new TreeNode(0);
-    TreeNode* first = new TreeNode(1);
-    TreeNode* second = new TreeNode(2);
-    TreeNode* third = new TreeNode(3);
-    TreeNode* fourth = new TreeNode(4);
-    TreeNode* fifth = new TreeNode(5);
+    TreeNode *rootNode = new TreeNode(0);
+    TreeNode *first = new TreeNode(1);
+    TreeNode *second = new TreeNode(2);
+    TreeNode *third = new TreeNode(3);
+    TreeNode *fourth = new TreeNode(4);
+    TreeNode *fifth = new TreeNode(5);
     rootNode->left = first;
     rootNode->right = second;
     first->left = third;
@@ -29,17 +29,26 @@ int main()
     return 0;
 }
 
-void printAllNodes(TreeNode* root){
-    std::queue<TreeNode*> queue;
+void printAllNodes(TreeNode *root)
+{
+    std::queue<TreeNode *> queue;
+    // can do logic here for the current level
     queue.push(root);
-    while(!queue.empty()){
+    while (!queue.empty())
+    {
         int nodesOnLvl = queue.size();
-        for(int i = 0; i < nodesOnLvl; ++i){
-            TreeNode* node = queue.front();
+        for (int i = 0; i < nodesOnLvl; ++i)
+        {
+            TreeNode *node = queue.front();
             queue.pop();
-            std::cout<<node->val<<" ";
-            if(node->left) queue.push(node->left);
-            if(node->right) queue.push(node->right);
+            // can do logic for the current node
+            std::cout << node->val << " ";
+            // pushing the next lvl onto the queue
+            if (node->left)
+                queue.push(node->left);
+            if (node->right)
+                queue.push(node->right);
         }
+        std::cout << "\n";
     }
 }
