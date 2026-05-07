@@ -19,9 +19,10 @@ void appendFile(string fileName, string wordCount);
 int main()
 {
     string file = "./Remembering_Earth.txt", wordCount = "wordcounts.txt";
-    readFile(file);
-    countFile(file, wordCount);
-    appendFile(file, wordCount);
+
+    // readFile(file);
+    // countFile(file, wordCount);
+    // appendFile(file, wordCount);
 
     return 0;
 }

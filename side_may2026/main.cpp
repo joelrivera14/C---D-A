@@ -1,10 +1,10 @@
 #include <iostream>
-#include "vect.h"
+#include "vec.h"
 
 int main()
 {
-    VECT<int> v;
-    VECT<int> s(5);
+    VEC<int> v;
+    VEC<int> s(5);
     v.print();
     s.print();
     return 0;
