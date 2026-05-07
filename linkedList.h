@@ -28,6 +28,33 @@ public:
             otherCurr = otherCurr->next;
         }
     }
+    List &operator=(const List &b)
+    {
+        if (this == &b)
+            return *this;
+        ListNode *node = head;
+        while (node)
+        {
+            ListNode *temp = node;
+            node = node->next;
+            delete temp;
+        }
+        head = nullptr;
+        if (b.head == nullptr)
+        {
+            return *this;
+        }
+        head = new ListNode(b.head->val);
+        ListNode *current = head;
+        ListNode *other = b.head->next;
+        while (other)
+        {
+            current->next = new ListNode(other->val);
+            current = current->next;
+            other = other->next;
+        }
+        return *this;
+    }
 
 private:
     ListNode *head;
