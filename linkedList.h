@@ -55,6 +55,9 @@ public:
         }
         return *this;
     }
+    void push_front(int val)
+    {
+    }
 
 private:
     ListNode *head;
