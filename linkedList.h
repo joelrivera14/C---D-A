@@ -56,7 +56,10 @@ public:
         return *this;
     }
     void push_front(int val)
-    { // commit
+    {
+        TreeNode *node = new ListNode(val);
+        node->next = head->next;
+        head = node;
     }
 
 private:
